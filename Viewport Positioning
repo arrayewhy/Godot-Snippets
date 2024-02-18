@@ -1,0 +1,13 @@
+****************************************************************************************************
+Center Gridded Stage in Camera View according to Camera Zoom, Stage Size, & Cell Size
+----------------------------------------------------------------------------------------------------
+
+@export var target:Node2D;
+
+func Reposition (camera:Camera2D, stageSize:Vector2, cellSize:int):
+	var winSize:Vector2 = DisplayServer.window_get_size ();
+	target.position = Vector2 (
+		winSize.x / camera.zoom.x / 2 - ((stageSize.x * cellSize) / 2), 
+		winSize.y / camera.zoom.y / 2 - ((stageSize.y * cellSize) / 2));
+
+****************************************************************************************************

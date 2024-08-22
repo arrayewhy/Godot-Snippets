@@ -1,0 +1,39 @@
+****************************************************************************************************
+In-game Debug Overlay
+----------------------------------------------------------------------------------------------------
+
+# Best used as an Autoload!
+
+extends Node;
+
+var debugCanvLay:CanvasLayer;
+var textLabel:RichTextLabel;
+
+func _ready() -> void:
+	# Spawn Canvas Layer and Label
+	debugCanvLay = CanvasLayer.new();
+	add_child(debugCanvLay);
+	textLabel = RichTextLabel.new();
+	debugCanvLay.add_child(textLabel);
+	# Canvas Layer Settings
+	debugCanvLay.layer = 1000;
+	# Label Settings
+	textLabel.bbcode_enabled = true;
+	textLabel.clip_contents = false;
+	textLabel.scroll_following = true;
+	textLabel.set_anchors_preset(15, true);
+	textLabel.push_bgcolor(Color(0, 0 ,0 ,0.8));
+
+func Print(val) -> void:
+	if textLabel.text != "":
+		textLabel.text = str(textLabel.text, "\n", str(val));
+		return;
+	textLabel.text = str(val);
+
+func Warn(val) -> void:
+	Print(str("[color='red']", str(val), '[/color]'));
+
+func Alert(val) -> void:
+	Print(str("[bgcolor='red'][color='yellow']", str(val), '[/color][/bgcolor]'));
+
+****************************************************************************************************

@@ -18,11 +18,12 @@ func _ready() -> void:
 	# Canvas Layer Settings
 	debugCanvLay.layer = 1000;
 	# Label Settings
+	textLabel.mouse_filter = Control.MOUSE_FILTER_IGNORE;
 	textLabel.bbcode_enabled = true;
 	textLabel.clip_contents = false;
 	textLabel.scroll_following = true;
 	textLabel.set_anchors_preset(15, true);
-	textLabel.push_bgcolor(Color(0, 0 ,0 ,0.8));
+	textLabel.push_bgcolor(Color.BLACK);
 
 func Print(val) -> void:
 	if textLabel.text != "":

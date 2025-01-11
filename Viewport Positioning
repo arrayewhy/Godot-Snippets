@@ -1,5 +1,6 @@
 ****************************************************************************************************
 Center Gridded Stage in Camera View according to Camera Zoom, Stage Size, & Cell Size
+FIX: What does this even do? Give an example.
 ----------------------------------------------------------------------------------------------------
 
 @export var target:Node2D;

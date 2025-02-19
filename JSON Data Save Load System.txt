@@ -1,0 +1,47 @@
+****************************************************************************************************
+JSON Data Save Load System
+----------------------------------------------------------------------------------------------------
+
+extends Node
+
+@export var SAVE_PATH:String = "user://anyNameYouWant.anySuffixYouDesire";
+@export var DEBUG_VARIABLE:int;
+
+@export var save_Data:bool;
+@export var load_Data:bool;
+
+# Example Usage
+
+func _process(_delta: float) -> void:
+	if save_Data:
+		save_Data = false;
+		SaveGame({ "DEBUG_VARIABLE" : 69 });
+		return;
+	if load_Data:
+		load_Data = false;
+		LoadGame();
+
+# Functions: Save & Load Data ----------------------------------------------------------------------------------------------------
+
+func SaveGame(dataDict:Dictionary) -> void:
+	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE);
+	var data:Dictionary = dataDict;
+	# Convert data to JSON string
+	var jsonString = JSON.stringify(data);
+	# Append jsonString to the file with "\n" at the end.
+	file.store_line(jsonString);
+	
+func LoadGame() -> void:
+	# Open the file
+	var file = FileAccess.open(SAVE_PATH, FileAccess.READ);
+	# Make sure it exists
+	if FileAccess.file_exists(SAVE_PATH) == true:
+		# Check if we have read past the end of the file.
+		if not file.eof_reached():
+			# Make the file Godot-readable
+			var current_line = JSON.parse_string(file.get_line());
+			# Assign variables with data
+			if current_line:
+				DEBUG_VARIABLE = current_line["DEBUG_VARIABLE"];
+
+****************************************************************************************************

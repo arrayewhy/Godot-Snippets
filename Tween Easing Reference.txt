@@ -1,0 +1,11 @@
+****************************************************************************************************
+Easing Example when using Tweens.
+Easing settings must be in this order or else they will not work!
+----------------------------------------------------------------------------------------------------
+
+var shot:Tween = create_tween();
+shot.set_trans(Tween.TRANS_SINE);
+shot.set_ease(Tween.EASE_IN_OUT);
+shot.tween_property(self, "position", Vector2(0,0), 20);
+
+****************************************************************************************************
